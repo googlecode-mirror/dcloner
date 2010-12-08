@@ -1,0 +1,3 @@
+SET NAMES UTF-8;
+CREATE DATABASE `!hostname` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
+GRANT ALL PRIVILEGES ON '!hostname'.* TO '!user'@'!db_host' IDENTIFIED BY '!pass';

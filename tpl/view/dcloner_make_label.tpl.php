@@ -1,0 +1,1 @@
+<label for="dcloner[<?php print $for; ?>]" class="dcloner-cursor-hand"><?php print $title; ?></label>

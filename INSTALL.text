@@ -1,0 +1,42 @@
+1) 
+    Upack dcloner.tar.gz and copy folder under the name of dcloner into your
+    modules directory
+    
+    Copy contents of watch/htaccess and add to the end of .htaccess file at DRUPAL_ROOT 
+
+2) 
+    Create a directory structure somewhere like:
+        /DESTINATION/configs/
+                            apache
+                            nginx
+    and these folders should be writable for www-data user,
+    also you need to add web server Include /DESTINATION/configs/SERVER_TYPE/*.conf
+    to your configs
+
+3) 
+    Create writable folder to keep database dumps
+
+4)
+    Folder
+        DRUPAL_INSTALLATION/sites should be writable for www-data user
+
+6)
+	Add setting into a config.conf file
+
+	[Paths]
+	virtualhosts = /DESTINATION/configs/{apache,nginx}
+	backups = /DESTINATION/DUMP_DIRECTORY
+
+7)
+	Move folder named vendor/sxd to DRUPAL_ROOT folder
+	Installing
+
+	Set chmod 777 for DRUPAL_ROOT/sxd/backup directory.
+	Set chmod 666 for files DRUPAL_ROOT/sxd/cfg.php and DRUPAL_ROOT/ses.php.
+
+8) It is recommended to create dynamic subdomain aliases in you dns server
+   e.g. SUBDOMAIN.debaser.com
+
+9)
+	If there is any problems you got please email me at sultan@gipi.kg 
+	skype: elf_aka

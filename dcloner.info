@@ -1,0 +1,6 @@
+; $Id;
+name = Drupal Cloner
+description = Makes Possible To Create Fast ad-hoc web site instance based on the same drupal installation
+core = 6.x
+php = 5.x
+package = System

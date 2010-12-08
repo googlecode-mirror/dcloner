@@ -1,0 +1,4 @@
+This module allows you to create clones of an existing Drupal installation
+Links selected modules, themes, creates configuration files for Apache2 and Nginx servers
+provider by the admin user.
+Makes database dump and restores it onto newly created database.

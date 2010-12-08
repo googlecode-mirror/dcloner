@@ -1,0 +1,365 @@
+.corners-12px { border-radius: 12px; -moz-border-radius: 12px; -webkit-border-radius: 12px; }
+.corners-6px { border-radius: 6px; -moz-border-radius: 6px; -webkit-border-radius: 6px; }
+.corners-4px { border-radius: 4px; -moz-border-radius: 4px; -webkit-border-radius: 4px; }
+
+.corners-top-12px 
+{ 
+    border-top-left-radius: 12px; -moz-border-radius-topleft: 12px; -webkit-border-top-left-radius: 12px;
+    border-top-right-radius: 12px; -moz-border-radius-topright: 12px; -webkit-border-top-right-radius: 12px; 
+}
+.corners-top-6px 
+{ 
+    border-top-left-radius: 6px; -moz-border-radius-topleft: 6px; -webkit-border-top-left-radius: 6px;
+    border-top-right-radius: 6px; -moz-border-radius-topright: 6px; -webkit-border-top-right-radius: 6px;
+}
+
+.corners-top-4px 
+{ 
+    border-top-left-radius: 4px; -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px;
+    border-top-right-radius: 4px; -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px;
+}
+
+.shadow-all-1px { box-shadow: 0 0 1px #FFFFFF; -moz-box-shadow: 0 0 1px #FFFFFF; -moz-box-shadow: 0 0 1px #FFFFFF; }
+.shadow-all-2px { box-shadow: 0 0 2px #FFFFFF; -moz-box-shadow: 0 0 2px #FFFFFF; -moz-box-shadow: 0 0 2px #FFFFFF; }
+.shadow-all-3px { box-shadow: 0 0 3px #FFFFFF; -moz-box-shadow: 0 0 3px #FFFFFF; -moz-box-shadow: 0 0 3px #FFFFFF; }
+.shadow-all-4px { box-shadow: 0 0 4px #FFFFFF; -moz-box-shadow: 0 0 4px #FFFFFF; -moz-box-shadow: 0 0 4px #FFFFFF; }
+
+.text-center { text-align: center; }
+
+.dcloner-overlay 
+{ 
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    background: url('../images/transparent-bg.png') 0 0 transparent; 
+}
+
+.clone-checker-close 
+{
+    position: absolute;
+    right: -5px;
+    top: 5px;
+    width: 50px;
+}
+
+.dclone-checker-container 
+{
+    position: relative;
+    width: 80%;
+    height: 460px;
+    background: url("../images/gradient.png") repeat-x scroll 0 0 #FFFFFF;
+    box-shadow: 0 0 15px #FFFFFF;
+    -moz-box-shadow: 0 10px 15px #333333;
+    margin: 50px auto;
+    padding-top: 26px;
+}
+
+.clone-checker 
+{
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    border-top: 6px solid #F9F9FD;
+}
+
+div.section {
+    position: relative;
+}
+
+fieldset.dcloner-info {
+    background: url('../images/gradient-grey-v2.jpg') repeat-x #DCDCDC;
+    font-size: 11px;
+    text-shadow: 0 1px 1px #DDDDDD;
+    box-shadow: 0 10px 15px #FFFFFF;
+    -moz-box-shadow: 0 10px 15px #EFEFEF;
+    -webkit-box-shadow: 0 10px 15px #FFFFFF;
+    margin: 20px auto;
+}
+
+fieldset.dcloner-info legend {
+    font-weight: bold;
+}
+
+#dcloner-create-form div {
+}
+
+#edit-port {
+    width: 100px;
+}
+
+#edit-servers-apache-wrapper,
+#edit-servers-nginx-wrapper {
+    
+}
+
+.box {
+    float: left;
+    display: block;
+    width: 40%;
+}
+
+.user-info {
+    margin-left: 20px;
+}
+
+.host-info {
+}
+
+.drupal-info {
+    width: 970px;
+    clear: both;
+}
+
+.domain-type {
+    /*position: absolute;
+    top: 60px;
+    right: 100px;
+    width: 200px;*/
+}
+
+div.notify .form-item label {
+    width: auto;
+    text-align: left;
+}
+
+span.dcloner-help {
+    position: relative;
+    left: 10px; 
+    width: 16px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 0 1px 1px #DDDDDD;
+    padding: 0;
+    margin-top: 15px;
+}
+
+span.dcloner-help:hover {
+    cursor: pointer;
+}
+
+div.server div {
+    display: inline;
+}
+
+.corners {
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+}
+
+.corner-top {
+    border-radius: 6px;
+}
+
+.dcloner-label div label {
+    width: 100%;
+    text-align: left;
+    color: #000000;
+}
+
+.dcloner-form-controls {
+    padding: 2px;    
+}
+
+.dcloner-form-button {
+    cursor: pointer;
+}
+
+.dcloner-cursor-hand {
+    cursor: pointer;
+}
+
+.form-item {
+}
+
+.dcloner-label .form-item {
+    width: auto;
+}
+
+.clone-server,
+.clone-status {
+    text-indent: -99999px;
+}
+
+.nginx {
+    background: url('../images/nginx.png') 15px 5px no-repeat transparent;
+}
+
+.apache {
+    background: url('../images/apache.png') 15px 5px no-repeat transparent;
+}
+
+.instance-deleted 
+{
+    background: url('../images/tick_circle.png') 15px 5px no-repeat transparent;
+}
+
+.instance-disabled 
+{
+    background: url('../images/exclamation-red.png') 15px 5px no-repeat transparent;
+}
+
+.instance-active 
+{
+    background: url('../images/tick_circle.png') 15px 5px no-repeat transparent;
+}
+
+.clone-actions {
+    width: 100px;
+}
+
+.action-edit, 
+.action-delete, 
+.action-view
+{
+    width: 24px;
+    height: auto;
+    display: inline-block;
+    border: 1px solid #FFFFFF;
+    -moz-border-radius: 4px 4px 4px 4px;
+    padding-top: 3px;
+    margin-left: 5px;
+    text-align: center; 
+}
+
+.action-edit:hover, 
+.action-delete:hover, 
+.action-view:hover 
+{
+     border-color: #EFEFEF;
+     background: #EEEEEE;
+}
+
+.instances-list 
+{
+    width: 80%;
+}
+
+.instances-short-list {
+    width: 450px;
+}
+
+.server-apache, .server-nginx, .server-lhttpd, .server-iis {}
+ 
+.description {
+    font-size: 9px;
+    color: #999999;
+    clear: both;
+}
+
+.toggle-view {
+    margin-bottom: 5px; 
+}
+
+.toggle-view button {
+    width: 25px;
+    height: 25px;
+    border: 1px solid #EEEEEE;
+    background: url('../images/toggle.png') 3px 4px no-repeat;
+    text-indent: -99999px;
+    cursor: pointer;
+}
+
+.toggle-view button:hover {
+    border: 1px solid #AAAAAA;
+}
+
+.dcloner-summary {
+    position: relative;
+}
+
+.dcloner-summary ul#container {
+    overflow: hidden;
+}
+
+.dcloner-state {
+    float: left;
+    width: 250px;
+    display: block;
+    margin-right: 15px;
+}
+
+.generate-config {
+    width: 200px; 
+    text-align: center;
+}
+
+.sublist.actions {
+    border-right: 1px solid #CCCCCC;
+    padding-right: 10px;
+}
+
+.sublist li {
+    height: 50px;
+    border: 1px solid #EEEEEE;
+    background: url('../images/gradient-grey-v2.jpg') 0 0 repeat-x transparent;
+    margin-bottom: 15px;
+    padding: 2px;
+    cursor:  pointer;
+}
+
+.sublist li:hover {
+    border: 1px solid #CCCCCC;
+}
+
+.dcloner-state-contents {
+    width: 100%;
+    height: 100%;
+    font: normal 11px/150% Arial Serif Helvetica;
+    padding: 10px;
+    color: #666666;
+}
+
+.dcloner-state-contents:hover {
+    color: #999999;
+}
+
+.dcloner-state-contents span {
+    position: relative;
+    left: 50px;
+}
+
+.active-container {
+    width: 50%;
+    text-align: left;
+    padding: none;
+}
+
+.active-content {
+    width: 100%;
+    text-align: left; 
+}
+
+.summary {
+    background: url('../images/activity_monitor.png') top left no-repeat transparent;
+}
+
+.tasks {
+    background: url('../images/tasks.png') top left no-repeat transparent;
+    font-size: 14pt;
+}
+
+.permissions {
+    background: url('../images/settings.png') top left no-repeat transparent;
+}
+
+.instances {
+    background: url('../images/instances.png') top left no-repeat transparent;
+    font-size: 14pt;
+}
+
+.warnings {
+    background: url('../images/warning.png') top left no-repeat transparent;
+    font-size: 14pt;
+}
+
+.notification {
+    background: url('../images/notification.png') top left no-repeat transparent;
+    font-size: 14pt;
+}

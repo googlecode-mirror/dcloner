@@ -1,0 +1,4 @@
+Options FollowSymLinks
+
+RewriteCond %{HTTP_HOST} !^w{3}\.YOUR_DOMAIN.COM
+RewriteCond %{HTTP_HOST} ^([^.]+)\.YOUR_DOMAIN.COM

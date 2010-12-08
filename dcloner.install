@@ -1,0 +1,111 @@
+<?php
+function dcloner_schema() {
+	$schema['dclones'] = array(
+	    'description' => 'Stores the general data on clones.',
+	    'fields' => array(
+      		'clone_id' => array(
+        		'type' => 'serial',
+        		'unsigned' => True,
+        		'not null' => True,
+        		'no export' => True,
+        		'description' => 'The clone ID of the field, defined by the database.',
+			),
+			'hostname' => array(
+				'type' => 'varchar',
+				'length' => 100,
+				'not null' => True,
+				'description' => 'Assigned hostname.',
+			),
+			'type' => array(
+                'type' => 'varchar',
+                'length' => 20,
+                'not null' => True,
+                'default' => 'subdomain',
+            ),
+			'server_type' => array(
+				'type' => 'varchar',
+				'length' => 32,
+				'not null' => True,
+				'description' => 'The state of the cloned instance freezed/active.',
+			),
+			'port' => array(
+                'type' => 'int',
+                'length' => 4,
+                'default' => 80,
+                'not null' => True,
+                'description' => 'Port number.',
+            ),
+			'status' => array(
+                'type' => 'varchar',
+                'length' => 32,
+                'not null' => True,
+                'description' => 'Instance\'s status.',
+            ),
+            'created' => array(
+                'type' => 'varchar',
+                'length' => 100,
+                'default' => '',
+                'description' => 'Created date.',
+            ),
+            'changed' => array(
+                'type' => 'varchar',
+                'length' => 100,
+                'default' => '',
+                'description' => 'Created date.',
+            ),
+			'description' => array(
+				'type' => 'varchar',
+				'length' => 2048,
+				'default' => '',
+				'description' => 'A description of the clone instance for the admin interface.',
+			),
+		),
+		'primary key' => array('clone_id'),
+		'unique keys' => array('hostname' => array('hostname')),
+	);
+
+    $schema['dclone_users'] = array(
+        'description' => 'Stores the general about instance users.',
+        'fields' => array(
+            'uid' => array(
+                'type' => 'serial',
+                'unsigned' => True,
+                'not null' => True,
+                'no export' => True,
+            ),
+            'clone_id' => array(
+                'type' => 'int',
+                'unsigned' => True,
+                'unique' => True,
+                'not null' => True,
+                'no export' => True,
+            ),
+            'firstname' => array(
+                'type' => 'varchar',
+                'length' => 100,
+                'not null' => True,
+            ),
+            'lastname' => array(
+                'type' => 'varchar',
+                'length' => 100,
+                'not null' => True,
+            ),
+            'email' => array(
+                'type' => 'varchar',
+                'length' => 100,
+                'not null' => True,
+            ),
+        ),
+        'primary key' => array('uid'),
+    );
+
+	return $schema;
+}
+
+function dcloner_install() {
+    drupal_install_schema('dcloner');
+}
+
+function dcloner_uninstall() {
+    drupal_install_schema('dcloner');
+}

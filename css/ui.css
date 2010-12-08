@@ -1,0 +1,48 @@
+span.selbox div
+{
+    margin: 0;
+    padding: 0;
+}
+
+span.selbox
+{
+    position: relative;
+    display: block;
+    width: 85px;
+    border: 1px solid #A4C8EE;
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    box-shadow: 0 0 1px #333333;
+    -moz-box-shadow: 0 0 1px #333333;
+    -webkit-box-shadow: 0 0 1px #333333;
+    background: #A4C8FE;
+    text-indent: 18px;
+    color: #676767;
+    padding: 2px;
+    cursor: pointer;
+}
+
+span.selbox:hover
+{
+    background: #B4C8FE;
+    box-shadow: 0 0 1px #AFAFAF;
+    -moz-box-shadow: 0 0 1px #AFAFAF;
+    -webkit-box-shadow: 0 0 1px #AFAFAF;
+}
+
+span.selbox input
+{
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    cursor: pointer;
+}
+
+span.selbox label 
+{
+    font: normal 10pt/16pt Arial Verdana Helvetica;
+    margin: 0 auto;
+    padding: 2px;
+    cursor: pointer;
+}

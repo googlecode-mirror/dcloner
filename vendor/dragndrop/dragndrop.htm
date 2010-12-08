@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>DragnDrop Demo</title>
+    <script type="text/javascript" src="js/jquery-1.3.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.dragndrop.js"></script>
+    <style type="text/css">
+        body,html
+        {
+            font-family:Calibri;
+            font-size:12px;
+            height:1000px;
+            line-height:18px;
+            }
+        p
+        {
+        	height:30px;
+        	}
+        .dragDiv
+        {
+        	width:200px;
+        	background-color:#EFF7FF;
+            border:1px solid #96C2F1;
+            position:absolute;
+            left:100px;
+            top:100px;
+        	}
+        .dragDiv h5
+        {
+        	background-color:#B2D3F5;
+        	padding:5px;
+            margin:1px;
+        	}
+        .dragDiv div
+        {
+        	padding:5px;
+        	margin-bottom:10px;
+            }
+        .dragDiv2
+        {
+        	background-color:#F0FBEB;
+            border:1px solid #9BDF70;
+        	width:200px;
+        	position:absolute;
+            left:400px;
+            top:400px;
+        	}
+        .dragDiv2 h5
+        {
+        	background-color:#C2ECA7;
+        	padding:5px;
+            margin:1px;
+            }
+        .dragDiv2 div
+        {
+        	padding:5px;
+        	margin-bottom:10px;
+            }
+    </style>
+    <script type="text/javascript">
+        $().ready(function() {
+            $('.dragDiv').Drags({
+                handler: '.handler',
+                onMove: function(e) {
+                    $('.content').html('Div Position:(Left:' + e.pageX + ' ,Top:' + e.pageY + ')');
+                },
+                onDrop:function(e){
+                    $('.content').html('dropped!');
+                }
+            });
+
+            $('.dragDiv2').Drags({
+                handler: '.handler2',                
+                zIndex:200,
+                opacity:.9
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="dragDiv">
+    <h5 class="handler">Drag me</h5>
+    <div class="content">Yes, it is.</div>
+</div>
+
+<div class="dragDiv2">
+    <h5 class="handler2">Drag me too</h5>
+    <div class="content2">{ zIndex: 200, opacity: .9 }</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<?php
+// CONSTANTS MODULE USES ITSELF //
+  defined('DCLONER')
+or define('DCLONER', drupal_get_path('module', 'dcloner'));
+
+  defined('DOC_ROOT')
+or define('DOC_ROOT', $_SERVER['DOCUMENT_ROOT']);
+
+  defined('DRUPAL_FILES')
+or define('DRUPAL_FILES', DOC_ROOT.base_path().file_directory_path());
+
+$dcloner_sites = 'all';
+
+if ('ND' !== variable_get('dcloner_site', 'ND'))
+    $dcloner_sites = variable_get('dcloner_site');
+
+  defined('DRUPAL_MODULES')
+or define('DRUPAL_MODULES', DOC_ROOT.base_path().'sites/'.$dcloner_sites.'/modules');
+
+  defined('DRUPAL_THEMES')
+or define('DRUPAL_THEMES', DOC_ROOT.base_path().'sites/'.$dcloner_sites.'/themes');
+
+  defined('HOST_EXISTS')
+or define('HOST_EXISTS', 1);
+
+// WORKING PART //
+
+function dcloner_init() {
+    drupal_add_css(DCLONER.'/css/dcloner.css');
+    drupal_add_css(DCLONER.'/css/ui.css');
+}
+
+/**
+ * Defines allowed permissions
+ * @method dcloner
+ * @return array
+ */
+function dcloner_perm() {
+	return array(
+		'create drupal instances',
+		'delete drupal instances',
+		'freeze drupal instances',
+		'view drupal instances',
+		'administer drupal instances',
+		'administer drupal cloner',
+	);
+}
+
+function nice_user() {
+	global $user;
+
+	if (in_array('authenticated user', $user->roles)) {
+		return True;
+	}
+
+	return False;
+}
+
+/**
+ * Specifies admin user access
+ * @param $arg Mixed
+ * @return bool
+ */
+function dcloner_admin_access($arg = '') {
+	global $user;
+
+	if (nice_user() && $user->uid == 1) {
+		return True;
+	}
+
+	return False;
+}
+
+/**
+ * Specifies common user access
+ * @param $arg Mixed
+ * @return bool
+ */
+function dcloner_simple_access($arg = '') {
+	return nice_user();
+}
+
+/*
+function dcloner_help($path, $arg) {
+    switch($path) {
+        case 'admin/help#dcloner':  
+            return theme('dcloner_help');
+    }
+}
+*/
+
+function dcloner_theme() {
+    return array(
+        'dcloner_create_view' => array(
+            'template' => 'tpl/view/dcloner_create_view',
+        ),
+        'dcloner_help' => array(
+            'template' => 'tpl/view/dcloner_help',
+        ),
+        'dcloner_checkbox' => array(
+            'template' => 'tpl/view/dcloner_checkbox',
+            'arguments' => array('checkbox_name' => '', 'checkbox_val' => ''),
+        ),
+        'dcloner_make_label' => array(
+            'template' => 'tpl/view/dcloner_make_label',
+            'arguments' => array('for' => '', 'title' => ''),
+        ),
+        'dcloner_summary' => array(
+            'template' => 'tpl/view/dcloner_summary',
+            'arguments' => array('stats' => array()),
+        ),
+        'short_list' => array('file' => 'dcloner.pages.inc'),
+    );
+}
+
+function dcloner_menu() {
+	$items['admin/dcloner'] = array(
+		'title' => t('Drupal Cloner'),
+		'page callback' => 'dcloner_summary',
+		'access callback' => True,
+		'access arguments' => array('administer drupal cloner'),
+		'type' => MENU_NORMAL_ITEM,
+		'file' => 'dcloner.pages.inc',
+		'weight' => -6,
+	);
+
+	$items['admin/dcloner/summary'] = array(
+		'title' => t('Administer'),
+		'page callback' => 'dcloner_summary',
+		'access callback' => True,
+		'access arguments' => array('administer drupal cloner'),
+		'type' => MENU_DEFAULT_LOCAL_TASK,
+		'file' => 'dcloner.pages.inc',
+		'weight' => -6,
+	);
+
+	$items['admin/dcloner/create'] = array(
+		'title' => t('New instance'),
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('dcloner_create_form'),
+		'access callback' => 'dcloner_simple_access',
+		'access arguments' => array('create drupal instances'),
+		'type' => MENU_LOCAL_TASK,
+		'file' => 'dcloner.pages.inc',
+		'weight' => -5,
+	);
+
+	$items['admin/dcloner/list'] = array(
+		'title' => t('Instances'),
+		'page callback' => 'dcloner_list_instance',
+		'access callback' => 'dcloner_simple_access',
+		'access arguments' => array('view drupal instances'),
+		'type' => MENU_LOCAL_TASK,
+		'file' => 'dcloner.pages.inc',
+		'weight' => -4,
+	);
+
+    $items['admin/dcloner/dumper'] = array(
+        'title' => t('Make database dump'),
+        'page callback' => 'dcloner_makedump',
+        'access callback' => 'dcloner_simple_access',
+        'access arguments' => array('view drupal instances'),
+        'type' => MENU_LOCAL_TASK,
+        'file' => 'dcloner.pages.inc',
+        'weight' => -4,
+    );
+
+	$items['admin/dcloner/edit/%'] = array(
+		'title' => t('Edit instance'),
+		'page callback' => 'dcloner_edit_instance',
+		'page arguments' => array(3),
+		'access callback' => 'dcloner_simple_access',
+		'access arguments' => array('edit drupal instances'),
+		'type' => MENU_SUGGESTED_ITEM,
+		'file' => 'dcloner.pages.inc',
+	);
+
+	$items['admin/dcloner/delete/%'] = array(
+		'title' => t('Delete instance'),
+		'page callback' => 'dcloner_delete_instance',
+		'page arguments' => array(3),
+		'access callback' => 'dcloner_simple_access',
+		'access arguments' => array('delete drupal instances'),
+		'type' => MENU_SUGGESTED_ITEM,
+		'file' => 'dcloner.pages.inc',
+	);
+
+	$items['admin/dcloner/freeze/%'] = array(
+		'title' => t('Freeze instance'),
+		'page callback' => 'dcloner_freeze_instance',
+		'page arguments' => array(3),
+		'access callback' => 'dcloner_simple_access',
+		'access arguments' => array('freeze drupal instances'),
+		'type' => MENU_SUGGESTED_ITEM,
+		'file' => 'dcloner.pages.inc'
+	);
+
+    $items['admin/dcloner/generate/%/%'] = array(
+        'title' => t('Generate virtualhost configutation'),
+        'page callback' => 'dcloner_generate_virtualhost',
+        'page arguments' => array(3, 4),
+        'access callback' => 'dcloner_simple_access',
+        'access arguments' => array('view drupal instances'),
+        'type' => MENU_SUGGESTED_ITEM,
+        'file' => 'dcloner.generate.inc'
+    );
+
+	return $items;
+}
