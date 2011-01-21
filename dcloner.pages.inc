@@ -563,7 +563,7 @@ function dcloner_create_form() {
         '#description' => t('Instance owner\'s email. Maximum 40 alphabetic symbols.'),
         '#prefix' => '<div class="dcloner-text-element">',
         '#suffix' => '</div>',
-        '#element_validate' => array('valid_email_address'),
+        //'#element_validate' => array('valid_email_address'),
     );
 
     // Cloning options
@@ -648,14 +648,11 @@ function dcloner_create_form() {
 }
 
 function dcloner_create_form_validate(array $form) {
-    global $db_url;
-
+    $post = $form['#post'];
     $sql = t(
         'SELECT COUNT(hostname) FROM {dclones} WHERE hostname="!h" LIMIT 1', 
         array('!h' => $post['hostname'])
     );
-
-    $post = $form['#post'];
 
     check_field('name', $post['name']);
     check_field('lastname', $post['lastname']);
@@ -664,7 +661,7 @@ function dcloner_create_form_validate(array $form) {
     check_field('servers', $post['servers']);
     check_field('hostname', $post['hostname']);
     
-    if (intval(db_result(db_query($sql)), INT_CAST) == 1) {
+    if (intval(db_result(db_query($sql))) == 1) {
         form_set_error('hostname', t('Such hostname already exists, please pick another name'));
     }
 }
@@ -798,6 +795,9 @@ function dcloner_edit_form() {
     unset($form['host_info']['type']);
     unset($form['host_info']['servers']);
 
+    unset($form['clone_info']['themes']);
+    unset($form['clone_info']['modules']);
+
     $form['clone_info']['description']['#value'] = $instance['description'];
 
     $form['clone_info']['clone_id'] = array(
@@ -809,11 +809,29 @@ function dcloner_edit_form() {
 }
 
 function dcloner_edit_form_validate($form) {
-    dcloner_create_form_validate($form);
+    check_field('name', $post['name']);
+    check_field('lastname', $post['lastname']);
+    check_field('email', $post['email']);
+    check_field('port', $post['port']);
 }
 
 // TODO
 function dcloner_edit_form_submit($form) {
+    $update_clone = '
+        UPDATE {dcloner} 
+        SET port=\'!port\'
+        AND description=\'!desc\'
+        WHERE clone_id=!id
+    ';
+    
+    $update_clone_user = '
+        UPDATE {dclone_users} 
+        SET firstname=\'!firstname\'
+        AND lastname=\'!lastname\'
+        AND email=\'!email\'
+        WHERE clone_id=!id
+    ';
+    
     dsm($form);
 }
 
